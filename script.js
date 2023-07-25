@@ -29,3 +29,19 @@ function multiply(...nums) {
     })
     return totalMult;
 }
+
+function operate(operator, firstNum, secondNum) {
+    if (operator === '+') {
+        return add(firstNum, secondNum);
+    } else if (operator === '-') {
+        return subtract(firstNum, secondNum);
+    } else if (operator === '/') {
+        return divide(firstNum, secondNum);
+    } else if (operator === '*') {
+        return multiply(firstNum, secondNum);
+    } else {
+        return 'Wha happen';
+    }
+}
+
+console.log(operate('*', 5, 3));
