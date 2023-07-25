@@ -24,3 +24,12 @@ function divide(...nums) {
 }
 
 console.log(divide(10, 5, 2));
+
+function multiply(...nums) {
+    const totalMult = nums.reduce((total, num) => {
+        return total * num 
+    })
+    return totalMult;
+}
+
+console.log(multiply(10, 5, 2));
