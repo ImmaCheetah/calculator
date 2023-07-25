@@ -16,17 +16,16 @@
     justify-content: center;
 }
 
-.clear {
+.clear.buttons > #btn-clear {
     justify-content: flex-start;
     flex-grow: 1;
     margin-left: 15px;
 }
-.delete {
+#btn-delete {
     /* justify-content: flex-start; */
     flex-grow: 1;
     margin-right: 30px;
 }
-
 
 button {
     height: 90px;

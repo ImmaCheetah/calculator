@@ -40,11 +40,11 @@ function operate(operator, firstNum, secondNum) {
     }
 }
 
-const display = document.querySelector('.display');
-const one = document.getElementById('btn-1');
+const buttons = document.querySelectorAll('.number-btn');
 
-one.addEventListener('click', enterOne);
-
-function enterOne () {
-    display.textContent = 1;
-}
+// Adds event listener to all number buttons to show content
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+    document.querySelector('#result').textContent += button.textContent;
+    })
+});
