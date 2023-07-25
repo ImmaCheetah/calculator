@@ -15,3 +15,12 @@ function subtract(...nums) {
 }
 
 console.log(subtract(2, 8));
+
+function divide(...nums) {
+    const totalDiv = nums.reduce((total, num) => {
+        return total / num 
+    })
+    return totalDiv;
+}
+
+console.log(divide(10, 5, 2));
