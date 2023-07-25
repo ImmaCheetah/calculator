@@ -40,6 +40,11 @@ function operate(operator, firstNum, secondNum) {
     }
 }
 
+const display = document.querySelector('.display');
+const one = document.getElementById('btn-1');
+
+one.addEventListener('click', enterOne);
+
 function enterOne () {
-    
+    display.textContent = 1;
 }
