@@ -43,5 +43,3 @@ function operate(operator, firstNum, secondNum) {
         return 'Wha happen';
     }
 }
-
-console.log(operate('*', 5, 3));
