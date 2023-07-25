@@ -8,28 +8,24 @@ function add(...nums) {
     }, 0)
     return totalAdd;
 }
-
 function subtract(...nums) {
     const totalSub = nums.reduce((total, num) => {
         return total - num 
     })
     return totalSub;
 }
-
 function divide(...nums) {
     const totalDiv = nums.reduce((total, num) => {
         return total / num 
     })
     return totalDiv;
 }
-
 function multiply(...nums) {
     const totalMult = nums.reduce((total, num) => {
         return total * num 
     })
     return totalMult;
 }
-
 function operate(operator, firstNum, secondNum) {
     if (operator === '+') {
         return add(firstNum, secondNum);
@@ -42,4 +38,8 @@ function operate(operator, firstNum, secondNum) {
     } else {
         return 'Wha happen';
     }
+}
+
+function enterOne () {
+    
 }
