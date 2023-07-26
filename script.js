@@ -41,10 +41,14 @@ function operate(operator, firstNum, secondNum) {
 }
 
 const buttons = document.querySelectorAll('.number-btn');
+const result = document.querySelector('#result');
 
-// Adds event listener to all number buttons to show content
+// Add event listener to all number buttons to show content
 buttons.forEach(button => {
     button.addEventListener('click', function() {
-    document.querySelector('#result').textContent += button.textContent;
-    })
+    result.textContent += button.textContent;
+    let displayValue = result.textContent;
+    console.log(result.textContent);
+    }) 
 });
+
