@@ -1,5 +1,5 @@
-let firstNum = 0;
-let secondNum = 0;
+let firstNum = '';
+let secondNum = '';
 let operator = '';
 
 function add(...nums) {
@@ -40,40 +40,65 @@ function operate(operator, firstNum, secondNum) {
     }
 }
 
-const buttons = document.querySelectorAll('.number-btn');
+const numbers = document.querySelectorAll('.number-btn');
 const operators = document.querySelectorAll('.operator-btn');
+const btnsAndOprts = document.querySelectorAll('.number-btn, .operator-btn');
 const result = document.querySelector('#result');
 const division = document.getElementById('divide');
-let displayValue = '';
+let displayOperator = '';
+let displayNumber = '';
+let clicked = false;
+
+
+// btnsAndOprts.forEach(button => {
+//     button.addEventListener('click', e => {
+//         if (e.target.innerText === numbers.innerText) {
+//             console.log('yeee');
+//         }
+//     })
+// })
 
 // Add event listener to all number buttons to show content
-buttons.forEach(button => {
-    button.addEventListener('click', function() {
-    result.textContent += button.textContent;
-    displayValue = result.textContent;
-    console.log(displayValue);
+numbers.forEach(number => {
+    number.addEventListener('click', function() {
+    result.textContent += number.textContent;
+    displayNumber = result.textContent;
+    // console.log(displayNumber);
     }) 
 });
 
 operators.forEach(operator => {
-    operator.addEventListener('click', function() {
-    result.textContent += operator.textContent;
-    displayValue = result.textContent;
-    // console.log(displayValue);
+    operator.addEventListener('click', e => {
+        if (e.target.innerText === '/') {
+            result.textContent += operator.textContent;
+            displayOperator === '/';
+            firstNum = displayNumber;
+            console.log(displayNumber);
+            console.log('it work');
+        }
+
+    // result.textContent += operator.textContent;
+    // displayNumber = result.textContent;
+    // console.log(displayNumber);
     }) 
 });
 
-division.addEventListener('click', doDivide);
 
-function doDivide() {
-    if (displayValue != '' && !displayValue.includes('/')) {
-        firstNum = displayValue;
-        console.log('this is firstnum '+firstNum);
-    } else if (displayValue != '' && displayValue.includes('/')) {
-        secondNum = displayValue;
-        console.log('this is secondnum '+secondNum);
-    } else {
-        console.log('stop');
-    }
-}
+
+
+
+
+// division.addEventListener('click', doDivide);
+
+// function doDivide() {
+//     if (displayNumber !== '' && !displayNumber.includes('/')) {
+//         firstNum = displayNumber;
+//         console.log('this is firstnum '+firstNum);
+//     } else if (displayNumber !== '' && displayNumber.includes('/')) {
+//         secondNum = displayNumber;
+//         console.log('this is secondnum '+secondNum);
+//     } else {
+//         console.log('error');
+//     }
+// }
 
