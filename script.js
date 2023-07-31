@@ -28,7 +28,7 @@ function multiply(...nums) {
 }
 function operate(num1, operatorDisplay, num2) {
     if (operatorDisplay === '+') {
-        return add(num1, num2);
+        return add(parseInt(num1),parseInt(num2));
     } else if (operatorDisplay === '-') {
         return subtract(num1, num2);
     } else if (operatorDisplay === '/') {
@@ -74,13 +74,17 @@ numbers.forEach(number => {
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
         if (operator.textContent === '=') {
-            operate(num1, operatorDisplay, num2);  
+            console.log(operate(num1, operatorDisplay, num2));  
             updateDisplay(); 
         } else if (operator.textContent === 'Clear') {
             display.innerHTML = '';
             num1 = '';
             num2 = '';
             operatorDisplay = '';
+        } else if (operator.textContent === 'Delete') {
+            display.textContent = display.textContent.substring(0, display.textContent.length - 1);
+            updateDisplay();
+            console.log(display.textContent);
         } else {
             operatorDisplay += operator.textContent;
             updateDisplay();
