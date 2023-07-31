@@ -40,8 +40,6 @@ function operate(num1, operatorDisplay, num2) {
     }
 }
 
-console.log(operate(8, '/', 2));
-
 const numbers = document.querySelectorAll('.number-btn');
 const operators = document.querySelectorAll('.operator-btn');
 
@@ -53,7 +51,10 @@ const division = document.getElementById('divide');
 
 function updateDisplay() {
     let displayValue = num1 + operatorDisplay + num2;
+    // let displayResult = operate();
     display.textContent = displayValue;
+    // display.textContent = displayResult;
+    
     // console.log(displayValue);
 }
 
@@ -71,16 +72,19 @@ numbers.forEach(number => {
 });
 
 operators.forEach(operator => {
-    operator.addEventListener('click', e => {
+    operator.addEventListener('click', () => {
         if (operator.textContent === '=') {
             operate(num1, operatorDisplay, num2);  
             updateDisplay(); 
+        } else if (operator.textContent === 'Clear') {
+            display.innerHTML = '';
+            num1 = '';
+            num2 = '';
+            operatorDisplay = '';
         } else {
             operatorDisplay += operator.textContent;
-            // console.log(operatorDisplay);
             updateDisplay();
         }
-
 
         // if (e.target.innerText === '/') {
         //     display.textContent += operator.textContent;
