@@ -33,7 +33,11 @@ function operate(num1, operatorDisplay, num2) {
     } else if (operatorDisplay === '-') {
         return subtract(num1, num2);
     } else if (operatorDisplay === '/') {
-        return divide(num1, num2);
+        if (num2 === '0') {
+            return 'Bro stop';
+        } else {
+            return divide(num1, num2);
+        }   
     } else if (operatorDisplay === '*') {
         return multiply(num1, num2);
     } else {
@@ -53,7 +57,6 @@ const numbers = document.querySelectorAll('.number-btn');
 const operators = document.querySelectorAll('.operator-btn');
 let display = document.querySelector('#result');
 let displayValue = '';
-
 
 
 function updateDisplay() {
