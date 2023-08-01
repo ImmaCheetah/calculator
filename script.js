@@ -6,27 +6,27 @@ function add(...nums) {
     const totalAdd = nums.reduce((total, num) => {
         return total + num 
     }, 0)
-    return totalAdd;
+    return roundToFour(totalAdd);
 }
 function subtract(...nums) {
     const totalSub = nums.reduce((total, num) => {
         return total - num 
     })
-    return totalSub;
+    return roundToFour(totalSub);
 }
 function divide(...nums) {
     const totalDiv = nums.reduce((total, num) => {
         return total / num 
     })
-    return totalDiv;
+    return roundToFour(totalDiv);
 }
 function multiply(...nums) {
     const totalMult = nums.reduce((total, num) => {
         return total * num 
     })
-    return totalMult;
-    
+    return roundToFour(totalMult);  
 }
+
 function operate(num1, operatorDisplay, num2) {
     if (operatorDisplay === '+') {
         return add(parseInt(num1),parseInt(num2));
@@ -41,14 +41,19 @@ function operate(num1, operatorDisplay, num2) {
     }
 }
 
+function roundToFour(num) {
+    return +(Math.round(num + "e+4")  + "e-4");
+}
+
+// function toE(num) {
+//     if (num > 10000000) return num.toExponential();
+// }
+
 const numbers = document.querySelectorAll('.number-btn');
 const operators = document.querySelectorAll('.operator-btn');
-
 let display = document.querySelector('#result');
 let displayValue = '';
-const division = document.getElementById('divide');
-// let displayOperator = '';
-// let displayNumber = '';
+
 
 
 function updateDisplay() {
