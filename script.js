@@ -52,7 +52,6 @@ const division = document.getElementById('divide');
 
 function updateDisplay() {
     displayValue = num1 + operatorDisplay + num2;
-    console.log(displayValue);
     display.textContent = displayValue;
     
 }
@@ -86,8 +85,11 @@ operators.forEach(operator => {
             } else if (operatorDisplay.length > 0) {
                 operatorDisplay = operatorDisplay.substring(0, operatorDisplay.length -1);
             } else {
-                if(num2.length <= 0) { operatorDisplay = '';}
-                else { num2 = num2.substring(0, num2.length - 1); }
+                if (num2.length <= 0) { 
+                    operatorDisplay = '';
+                } else { 
+                    num2 = num2.substring(0, num2.length - 1); 
+                }
             }
             updateDisplay();
         } else {
