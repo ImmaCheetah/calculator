@@ -25,6 +25,7 @@ function multiply(...nums) {
         return total * num 
     })
     return totalMult;
+    
 }
 function operate(num1, operatorDisplay, num2) {
     if (operatorDisplay === '+') {
@@ -53,7 +54,6 @@ const division = document.getElementById('divide');
 function updateDisplay() {
     displayValue = num1 + operatorDisplay + num2;
     display.textContent = displayValue;
-    
 }
 
 
@@ -72,7 +72,9 @@ numbers.forEach(number => {
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
         if (operator.textContent === '=') {
-            console.log(operate(num1, operatorDisplay, num2));  
+            num1 = operate(num1, operatorDisplay, num2);
+            operatorDisplay = '';
+            num2 = '';
             updateDisplay(); 
         } else if (operator.textContent === 'Clear') {
             display.innerHTML = '';
@@ -96,12 +98,5 @@ operators.forEach(operator => {
             operatorDisplay += operator.textContent;
             updateDisplay();
         }
-
-        // if (e.target.innerText === '/') {
-        //     display.textContent += operator.textContent;
-        //     displayOperator === '/';
-        //     num1 = displayNumber;
-        //     console.log(displayNumber);
-        // }
     }) 
 });

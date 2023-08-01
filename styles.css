@@ -79,10 +79,10 @@ button {
 }
 
 button:hover {
-    background-color: #DDA174;
     color: black;
+    background-color: #DDA174;
     transform: translateY(-3px);
-    transition: 0.2s;
+    transition: 0.15s;
 }
 
 button:active {
