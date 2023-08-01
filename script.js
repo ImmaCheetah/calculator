@@ -44,18 +44,17 @@ const numbers = document.querySelectorAll('.number-btn');
 const operators = document.querySelectorAll('.operator-btn');
 
 let display = document.querySelector('#result');
+let displayValue = '';
 const division = document.getElementById('divide');
 // let displayOperator = '';
 // let displayNumber = '';
 
 
 function updateDisplay() {
-    let displayValue = num1 + operatorDisplay + num2;
-    // let displayResult = operate();
+    displayValue = num1 + operatorDisplay + num2;
+    console.log(displayValue);
     display.textContent = displayValue;
-    // display.textContent = displayResult;
     
-    // console.log(displayValue);
 }
 
 
@@ -82,9 +81,15 @@ operators.forEach(operator => {
             num2 = '';
             operatorDisplay = '';
         } else if (operator.textContent === 'Delete') {
-            display.textContent = display.textContent.substring(0, display.textContent.length - 1);
+            if (operatorDisplay == '') {
+                num1 = num1.substring(0, num1.length - 1);
+            } else if (operatorDisplay.length > 0) {
+                operatorDisplay = operatorDisplay.substring(0, operatorDisplay.length -1);
+            } else {
+                if(num2.length <= 0) { operatorDisplay = '';}
+                else { num2 = num2.substring(0, num2.length - 1); }
+            }
             updateDisplay();
-            console.log(display.textContent);
         } else {
             operatorDisplay += operator.textContent;
             updateDisplay();
