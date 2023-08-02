@@ -34,7 +34,7 @@ function operate(num1, operatorDisplay, num2) {
         return subtract(num1, num2);
     } else if (operatorDisplay === '/') {
         if (num2 === '0') {
-            return 'Bro stop';
+            return 'stop';
         } else {
             return divide(num1, num2);
         }   
@@ -103,8 +103,14 @@ operators.forEach(operator => {
             }
             updateDisplay();
         } else {
-            operatorDisplay += operator.textContent;
-            updateDisplay();
+            if (operatorDisplay !== '') {
+                num2 += operator.textContent;
+                updateDisplay();
+            } else {
+                operatorDisplay += operator.textContent;
+                updateDisplay();
+            }
+            
         }
     }) 
 });
