@@ -41,7 +41,7 @@ function operate(num1, operatorDisplay, num2) {
     } else if (operatorDisplay === '*') {
         return multiply(num1, num2);
     } else {
-        return 'Wha happen';
+        return 'Error';
     }
 }
 
@@ -55,6 +55,7 @@ function roundToFour(num) {
 
 const numbers = document.querySelectorAll('.number-btn');
 const operators = document.querySelectorAll('.operator-btn');
+const decimal = document.getElementById('btn-decimal');
 let display = document.querySelector('#result');
 let displayValue = '';
 
@@ -77,10 +78,12 @@ numbers.forEach(number => {
     number.addEventListener('click', function() {
         if (operatorDisplay == '') {
             num1 += number.textContent;
-          } else {
+        } else if (operatorDisplay === '.') {
+            decimal.disabled = true;     
+        } else {
             num2 += number.textContent;
-          }
-          updateDisplay();
+        }
+        updateDisplay();
     }) 
 });
 
@@ -88,7 +91,7 @@ operators.forEach(operator => {
     operator.addEventListener('click', () => {
         if (operator.textContent === '=') {
             if (operatorDisplay === '' && num1 === '' && num2 === '') {
-                return '';
+                clearDisplay();
             } else if (operatorDisplay !== '' && num1 === '' && num2 === '') {
                 clearDisplay();
             } else {
@@ -111,7 +114,7 @@ operators.forEach(operator => {
                     num2 = num2.substring(0, num2.length - 1); 
                 }
             }
-            updateDisplay();
+            updateDisplay();   
         } else {
             if (operatorDisplay !== '') {
                 num2 += operator.textContent;
