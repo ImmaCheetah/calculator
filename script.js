@@ -60,6 +60,7 @@ let display = document.querySelector('#result');
 let displayValue = '';
 
 
+
 function updateDisplay() {
     displayValue = num1 + operatorDisplay + num2;
     display.textContent = displayValue;
@@ -70,16 +71,17 @@ function clearDisplay() {
     num1 = '';
     num2 = '';
     operatorDisplay = '';
+    decimal.disabled = false;
 }
 
 
 // Add event listener to all number buttons to show content
 numbers.forEach(number => {
     number.addEventListener('click', function() {
+        if (number.textContent === '.')
+            decimal.disabled = true;
         if (operatorDisplay == '') {
-            num1 += number.textContent;
-        } else if (operatorDisplay === '.') {
-            decimal.disabled = true;     
+            num1 += number.textContent;     
         } else {
             num2 += number.textContent;
         }
@@ -89,6 +91,7 @@ numbers.forEach(number => {
 
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
+        decimal.disabled = false;
         if (operator.textContent === '=') {
             if (operatorDisplay === '' && num1 === '' && num2 === '') {
                 clearDisplay();
@@ -114,7 +117,7 @@ operators.forEach(operator => {
                     num2 = num2.substring(0, num2.length - 1); 
                 }
             }
-            updateDisplay();   
+            updateDisplay();
         } else {
             if (operatorDisplay !== '') {
                 num2 += operator.textContent;
@@ -123,7 +126,6 @@ operators.forEach(operator => {
                 operatorDisplay += operator.textContent;
                 updateDisplay();
             }
-            
         }
     }) 
 });
