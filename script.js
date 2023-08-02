@@ -64,6 +64,13 @@ function updateDisplay() {
     display.textContent = displayValue;
 }
 
+function clearDisplay() {
+    display.innerHTML = '';
+    num1 = '';
+    num2 = '';
+    operatorDisplay = '';
+}
+
 
 // Add event listener to all number buttons to show content
 numbers.forEach(number => {
@@ -80,15 +87,18 @@ numbers.forEach(number => {
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
         if (operator.textContent === '=') {
-            num1 = operate(num1, operatorDisplay, num2);
-            operatorDisplay = '';
-            num2 = '';
-            updateDisplay(); 
+            if (operatorDisplay === '' && num1 === '' && num2 === '') {
+                return '';
+            } else if (operatorDisplay !== '' && num1 === '' && num2 === '') {
+                clearDisplay();
+            } else {
+                num1 = operate(num1, operatorDisplay, num2);
+                operatorDisplay = '';
+                num2 = '';
+                updateDisplay(); 
+            }
         } else if (operator.textContent === 'Clear') {
-            display.innerHTML = '';
-            num1 = '';
-            num2 = '';
-            operatorDisplay = '';
+            clearDisplay();
         } else if (operator.textContent === 'Delete') {
             if (operatorDisplay == '') {
                 num1 = num1.substring(0, num1.length - 1);
