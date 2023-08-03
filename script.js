@@ -34,7 +34,7 @@ function operate(num1, operatorDisplay, num2) {
         return subtract(parseFloat(num1),parseFloat(num2));
     } else if (operatorDisplay === '/') {
         if (num2 === '0') {
-            return 'stop';
+            return "don't (ง'̀-'́)ง";
         } else {
             return divide(parseFloat(num1),parseFloat(num2));
         }   
@@ -58,6 +58,7 @@ const operators = document.querySelectorAll('.operator-btn');
 const decimal = document.getElementById('btn-decimal');
 let display = document.querySelector('#result');
 let displayValue = '';
+let currentValue = false;
 
 function updateDisplay() {
     displayValue = num1 + operatorDisplay + num2;
@@ -76,6 +77,10 @@ function clearDisplay() {
 // Add event listener to all number buttons to show content
 numbers.forEach(number => {
     number.addEventListener('click', function() {
+        if (currentValue) {
+            clearDisplay();
+            currentValue = false;
+        }
         if (number.textContent === '.')
             decimal.disabled = true;
         if (operatorDisplay == '') {
@@ -91,6 +96,7 @@ operators.forEach(operator => {
     operator.addEventListener('click', () => {
         decimal.disabled = false;
         if (operator.textContent === '=') {
+            currentValue = true;
             if (operatorDisplay === '' && num1 === '' && num2 === '') {
                 clearDisplay();
             } else if (operatorDisplay !== '' && num1 === '' && num2 === '') {
@@ -117,11 +123,6 @@ operators.forEach(operator => {
                 }
             } else {
                 return 'Operator Error';
-                // if (num2.length <= 0) { 
-                //     operatorDisplay = '';
-                // } else { 
-                //     num2 = num2.toString().substring(0, num2.length - 1); 
-                // }
             }
             updateDisplay();
         } else {
@@ -130,24 +131,14 @@ operators.forEach(operator => {
                 updateDisplay();
             } if (num1 !== '' && num2 !== '') {
                 num1 = operate(num1, operatorDisplay, num2);
-                
                 num2 = '';
                 operatorDisplay = operator.textContent;
                 console.log(num1, num2);
                 updateDisplay();
-                
             } else {
                 operatorDisplay += operator.textContent;
                 updateDisplay();
-            }
-            // if (operatorDisplay !== '') {
-            //     num2 += operator.textContent;
-            //     updateDisplay();
-            // } else {
-            //     operatorDisplay += operator.textContent;
-            //     updateDisplay();
-            // }
-            
+            }         
         }
     }) 
 });
