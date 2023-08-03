@@ -49,17 +49,15 @@ function roundToFour(num) {
     return +(Math.round(num + "e+4")  + "e-4");
 }
 
-// function toE(num) {
-//     if (num > 10000000) return num.toExponential();
-// }
+function toE(num) {
+    if (num > 10000000) return num.toExponential();
+}
 
 const numbers = document.querySelectorAll('.number-btn');
 const operators = document.querySelectorAll('.operator-btn');
 const decimal = document.getElementById('btn-decimal');
 let display = document.querySelector('#result');
 let displayValue = '';
-
-
 
 function updateDisplay() {
     displayValue = num1 + operatorDisplay + num2;
@@ -97,8 +95,10 @@ operators.forEach(operator => {
                 clearDisplay();
             } else if (operatorDisplay !== '' && num1 === '' && num2 === '') {
                 clearDisplay();
+            } else if (operatorDisplay === '' && num1 !== '' && num2 === '') {
+                return;
             } else {
-                num1 = operate(num1, operatorDisplay, num2);
+                num1 = operate(num1, operatorDisplay, num2).toString();
                 operatorDisplay = '';
                 num2 = '';
                 updateDisplay(); 
@@ -106,16 +106,22 @@ operators.forEach(operator => {
         } else if (operator.textContent === 'Clear') {
             clearDisplay();
         } else if (operator.textContent === 'Delete') {
-            if (operatorDisplay == '') {
-                num1 = num1.substring(0, num1.length - 1);
-            } else if (operatorDisplay.length > 0) {
-                operatorDisplay = operatorDisplay.substring(0, operatorDisplay.length -1);
-            } else {
-                if (num2.length <= 0) { 
-                    operatorDisplay = '';
-                } else { 
-                    num2 = num2.substring(0, num2.length - 1); 
+            console.log(num1, num2);
+            if (operatorDisplay === '') {
+                num1 = num1.toString().substring(0, num1.length - 1);
+            } else if (operatorDisplay.length !== '') {
+                if (num2 !== '') {
+                    num2 = num2.toString().substring(0, num2.length - 1);
+                } else {
+                    operatorDisplay = operatorDisplay.toString().substring(0, operatorDisplay.length -1);
                 }
+            } else {
+                return 'Operator Error';
+                // if (num2.length <= 0) { 
+                //     operatorDisplay = '';
+                // } else { 
+                //     num2 = num2.toString().substring(0, num2.length - 1); 
+                // }
             }
             updateDisplay();
         } else {
@@ -126,6 +132,20 @@ operators.forEach(operator => {
                 operatorDisplay += operator.textContent;
                 updateDisplay();
             }
+            // if (operatorDisplay !== '') {
+            //     num2 += operator.textContent;
+            //     updateDisplay();
+            // } else {
+            //     operatorDisplay += operator.textContent;
+            //     updateDisplay();
+            // }
+            // if (num1 !== '' && num2 !== '') {
+            //     num1 = operate(num1, operatorDisplay, num2);
+                
+            //     num2 = '';
+            //     updateDisplay();
+            //     operatorDisplay = operator.textContent;
+            // }
         }
     }) 
 });
