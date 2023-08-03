@@ -128,6 +128,13 @@ operators.forEach(operator => {
             if (operatorDisplay !== '') {
                 num2 += operator.textContent;
                 updateDisplay();
+            } if (num1 !== '' && num2 !== '') {
+                num1 = operate(num1, operatorDisplay, num2);
+                
+                num2 = '';
+                operatorDisplay = operator.textContent;
+                updateDisplay();
+                
             } else {
                 operatorDisplay += operator.textContent;
                 updateDisplay();
@@ -139,13 +146,7 @@ operators.forEach(operator => {
             //     operatorDisplay += operator.textContent;
             //     updateDisplay();
             // }
-            // if (num1 !== '' && num2 !== '') {
-            //     num1 = operate(num1, operatorDisplay, num2);
-                
-            //     num2 = '';
-            //     updateDisplay();
-            //     operatorDisplay = operator.textContent;
-            // }
+            
         }
     }) 
 });
