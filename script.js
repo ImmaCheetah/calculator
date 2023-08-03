@@ -29,17 +29,17 @@ function multiply(...nums) {
 
 function operate(num1, operatorDisplay, num2) {
     if (operatorDisplay === '+') {
-        return add(parseInt(num1),parseInt(num2));
+        return add(parseFloat(num1),parseFloat(num2));
     } else if (operatorDisplay === '-') {
-        return subtract(num1, num2);
+        return subtract(parseFloat(num1),parseFloat(num2));
     } else if (operatorDisplay === '/') {
         if (num2 === '0') {
             return 'stop';
         } else {
-            return divide(num1, num2);
+            return divide(parseFloat(num1),parseFloat(num2));
         }   
     } else if (operatorDisplay === '*') {
-        return multiply(num1, num2);
+        return multiply(parseFloat(num1),parseFloat(num2));
     } else {
         return 'Error';
     }
@@ -133,6 +133,7 @@ operators.forEach(operator => {
                 
                 num2 = '';
                 operatorDisplay = operator.textContent;
+                console.log(num1, num2);
                 updateDisplay();
                 
             } else {
