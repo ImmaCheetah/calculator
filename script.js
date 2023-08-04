@@ -2,6 +2,13 @@ let num1 = '';
 let num2 = '';
 let operatorDisplay = '';
 
+const numbers = document.querySelectorAll('.number-btn');
+const operators = document.querySelectorAll('.operator-btn');
+const decimal = document.getElementById('btn-decimal');
+let display = document.querySelector('#result');
+let displayValue = '';
+let currentValue = false;
+
 function add(...nums) {
     const totalAdd = nums.reduce((total, num) => {
         return total + num 
@@ -47,22 +54,15 @@ function operate(num1, operatorDisplay, num2) {
 
 function roundToFour(num) {
     // return +(Math.round(num + "e+4")  + "e-4");
-    
-    return parseFloat(num.toFixed(3));
-    
+    return parseFloat(num.toFixed(4)); 
 }
 
 function toE(num) {
-    if (num > 10000) return parseFloat(num).toExponential();
+    if (num > 10000) return parseFloat(num).toExponential(3);
     return num;
 }
 
-const numbers = document.querySelectorAll('.number-btn');
-const operators = document.querySelectorAll('.operator-btn');
-const decimal = document.getElementById('btn-decimal');
-let display = document.querySelector('#result');
-let displayValue = '';
-let currentValue = false;
+
 
 function updateDisplay() {
     displayValue = num1 + operatorDisplay + num2;
@@ -77,7 +77,6 @@ function clearDisplay() {
     decimal.disabled = false;
 }
 
-
 // Add event listener to all number buttons to show content
 numbers.forEach(number => {
     number.addEventListener('click', function() {
@@ -88,7 +87,7 @@ numbers.forEach(number => {
         if (number.textContent === '.')
             decimal.disabled = true;
         if (operatorDisplay == '') {
-            num1 += number.textContent;     
+            num1 += number.textContent;    
         } else {
             num2 += number.textContent;
         }
