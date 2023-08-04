@@ -6,25 +6,25 @@ function add(...nums) {
     const totalAdd = nums.reduce((total, num) => {
         return total + num 
     }, 0)
-    return roundToFour(totalAdd);
+    return toE(roundToFour(totalAdd));
 }
 function subtract(...nums) {
     const totalSub = nums.reduce((total, num) => {
         return total - num 
     })
-    return roundToFour(totalSub);
+    return toE(roundToFour(totalSub));
 }
 function divide(...nums) {
     const totalDiv = nums.reduce((total, num) => {
         return total / num 
     })
-    return roundToFour(totalDiv);
+    return toE(roundToFour(totalDiv));
 }
 function multiply(...nums) {
     const totalMult = nums.reduce((total, num) => {
         return total * num 
     })
-    return roundToFour(totalMult);  
+    return toE(roundToFour(totalMult));
 }
 
 function operate(num1, operatorDisplay, num2) {
@@ -46,11 +46,15 @@ function operate(num1, operatorDisplay, num2) {
 }
 
 function roundToFour(num) {
-    return +(Math.round(num + "e+4")  + "e-4");
+    // return +(Math.round(num + "e+4")  + "e-4");
+    
+    return parseFloat(num.toFixed(3));
+    
 }
 
 function toE(num) {
-    if (num > 10000000) return num.toExponential();
+    if (num > 10000) return parseFloat(num).toExponential();
+    return num;
 }
 
 const numbers = document.querySelectorAll('.number-btn');
@@ -77,7 +81,7 @@ function clearDisplay() {
 // Add event listener to all number buttons to show content
 numbers.forEach(number => {
     number.addEventListener('click', function() {
-        if (currentValue) {
+        if (currentValue) { 
             clearDisplay();
             currentValue = false;
         }
@@ -127,17 +131,21 @@ operators.forEach(operator => {
             updateDisplay();
         } else {
             if (operatorDisplay !== '') {
-                num2 += operator.textContent;
-                updateDisplay();
+                // num2 += operator.textContent; // AND THIS 
+                // updateDisplay();
             } if (num1 !== '' && num2 !== '') {
                 num1 = operate(num1, operatorDisplay, num2);
                 num2 = '';
                 operatorDisplay = operator.textContent;
                 console.log(num1, num2);
                 updateDisplay();
+            } else if (num1 !== '' && operatorDisplay !== '') {
+                operatorDisplay = operator.textContent;
+                updateDisplay();
             } else {
                 operatorDisplay += operator.textContent;
                 updateDisplay();
+                currentValue = false;
             }         
         }
     }) 

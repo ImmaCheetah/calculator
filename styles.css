@@ -39,7 +39,7 @@ body {
     max-width: 386px;
     padding: 10px;
     padding-top: 15px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .buttons {
